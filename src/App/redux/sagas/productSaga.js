@@ -12,7 +12,7 @@ const fetchData = async (url) =>
   await dataAccess.get(url);
 
 export function* getProducts(param) {
-  const url = "http://www.mocky.io/v2/5e9ebdaa2d00007800cb7697";
+  const url = "https://www.mocky.io/v2/5e9ebdaa2d00007800cb7697";
   try {
     const response = yield call(fetchData, url);
     yield put(getProductsSuccess(response.products));
