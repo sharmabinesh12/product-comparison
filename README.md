@@ -1,6 +1,6 @@
-## Available Scripts
-
-In the project directory, you can run:
+##npm install
+Install all package dependency using `npm install command`
+Once your node_module package is ready then you can either start development server or create production build.
 
 ### `npm start`
 
@@ -18,4 +18,5 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
-Then you can run `node server.js` to application.
+Then, run `node server.js` to run application.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
