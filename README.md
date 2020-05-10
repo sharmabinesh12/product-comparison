@@ -1,4 +1,4 @@
-## npm install
+### `npm install`
 Install all package dependency using `npm install command`
 Once your node_module package is ready then you can either start development server or create production build.
 
