@@ -5,6 +5,7 @@ import './index.scss';
 import { getProducts } from '../../redux/actions/productAction';
 import CompareSummary from '../../components/compareSummary';
 import FeaturesList from '../../components/featurelist';
+import Loading from '../../components/loading';
 class ProductView extends Component {
   constructor(props) {
     super(props);
@@ -67,26 +68,26 @@ class ProductView extends Component {
     const { selectedProducts, isShowOnlyDiff } = this.state;
     return(
       <div className="product-container">
-          <div className="compare-summary">
-            <div className="compare-selected">
-              <div className="compare-text">
-                <span>Compare</span>
-                <span>{selectedProducts[selectedProducts.length-1] === 'select' ? selectedProducts.length - 1 : selectedProducts.length} Item selected</span>
-              </div>
-              <div className="only-diff-checkbox">
-                <input type="checkbox"  onChange={this.onShowOnlyDiff}/>
-                <label>Show only differences</label>
-              </div>
+        <div className="compare-summary">
+          <div className="compare-selected">
+            <div className="compare-text">
+              <span>Compare</span>
+              <span>{selectedProducts[selectedProducts.length-1] === 'select' ? selectedProducts.length - 1 : selectedProducts.length} Item selected</span>
             </div>
-            <CompareSummary 
-              compareSummary={productData.compareSummary}
-              selectedProducts={selectedProducts}
-              options={this.state.options}
-              onProductSelect ={ this.onProductSelect}
-              removeSelectedProduct={this.removeSelectedProduct}
-            />
+            <div className="only-diff-checkbox">
+              <input type="checkbox"  onChange={this.onShowOnlyDiff}/>
+              <label>Show only differences</label>
+            </div>
           </div>
-          <div className="feature-list-body">
+          <CompareSummary 
+            compareSummary={productData.compareSummary}
+            selectedProducts={selectedProducts}
+            options={this.state.options}
+            onProductSelect ={ this.onProductSelect}
+            removeSelectedProduct={this.removeSelectedProduct}
+          />
+        </div>
+        <div className="feature-list-body">
             <div className="feature-headings">
             {
               productData.featuresList && productData.featuresList.map((item,index)=>{
@@ -108,6 +109,13 @@ class ProductView extends Component {
               isShowOnlyDiff={this.state.isShowOnlyDiff}
             /> 
           </div>
+        {this.props.isLoading ?
+          <div className="loader-overlay">
+            <Loading />
+          </div>
+          :
+          ""
+        }
       </div> 
     )
   }
@@ -116,7 +124,8 @@ class ProductView extends Component {
 const mapStateToProps = (state) => {
   console.log(state.products.productData)
   return {
-    productData : state.products.productData ? state.products.productData : {}
+    productData : state.products.productData ? state.products.productData : {},
+    isLoading: state.products.isLoading ? state.products.isLoading : false
   };
 };
 

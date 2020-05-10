@@ -2,7 +2,6 @@
 let headers = {
     'Content-Type': 'application/json',
     'Accept' :'application/json'
-    // 'Accept' : 'text/csv'
 };
 
 
